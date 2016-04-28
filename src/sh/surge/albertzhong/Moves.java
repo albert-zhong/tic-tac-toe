@@ -25,17 +25,35 @@ public class Moves {
 
         int[] returnMove = new int[2];
 
-        returnMove[0] = moveChar[0] - 97;
-        returnMove[1] = moveChar[1] - 49;
+        returnMove[0] = moveChar[0] - 'a';
+        returnMove[1] = moveChar[1] - '1';
 
         return returnMove;
 
     }
 
+    /**
+     * Check if the move string is valid
+     * @param move
+     * @return true if the move string is valid, otherwise false
+     */
     public static boolean checkMove (String move) {
+        if (move.length() != 2) {
+            return false;
+        }
 
-        char[] checkMove = move.toCharArray();
-        return (checkMove[0] != 'a') && (checkMove[0] != 'b') && (checkMove[0] != 'c') || ((checkMove[1] != '1') && (checkMove[1] != '2') && (checkMove[1] != '3'));
+        char first = move.charAt(0);
+        char second = move.charAt(1);
+
+        if (first != 'a' && first != 'b' && first != 'c') {
+            return false;
+        }
+
+        if (second != '1' && second != '2' && second != '3') {
+            return false;
+        }
+
+        return true;
     }
 
 }

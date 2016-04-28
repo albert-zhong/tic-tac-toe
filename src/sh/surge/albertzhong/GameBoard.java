@@ -14,17 +14,13 @@ public class GameBoard {
         String sideTurn;
 
         char[][] board = new char[3][3];
-        board[0][0] = '='; // a1
-        board[0][1] = '='; // a2
-        board[0][2] = '='; // a3
-        board[1][0] = '='; // b1
-        board[1][1] = '='; // b2
-        board[1][2] = '='; // b3
-        board[2][0] = '='; // c1
-        board[2][1] = '='; // c2
-        board[2][2] = '='; // c3
+        // Initialize the board
+        for (int col = 0; col < 3; col++)
+            for (int row = 0; row < 3; row ++) {
+                board[col][row] = '=';
+            }
 
-        System.out.println(showBoard(board));
+        printBoard(board);
         System.out.println(">> P1: Crosses ");
 
         for(int i=0; i<100; i++) {
@@ -43,7 +39,8 @@ public class GameBoard {
             } else {
                 board[result[0]][result[1]] = 'o';
             }
-            System.out.println(">> P" + playerTurn + ": " + sideTurn + "\n>> Move: " + (i+2) + "\n" + showBoard(board));
+            System.out.println(">> P" + playerTurn + ": " + sideTurn + "\n>> Move: " + (i+2) + "\n");
+            printBoard(board);
 
             if (checkVictory.checkVictory(board) == "cross") {
                 System.out.println(">> Crosses (P1) wins!");
@@ -58,8 +55,15 @@ public class GameBoard {
         }
     }
 
-    public static String showBoard (char[][] board) {
-        return "  1 2 3\na " + board[0][0] + " " + board[0][1] + " " + board[0][2] + "\nb " + board[1][0] + " " + board[1][1] + " " + board[1][2] + "\nc " + board[2][0] + " " + board[2][1] + " " + board[2][2];
+    /**
+     * Print out the board status
+     * @param board
+     */
+    public static void printBoard (char[][] board) {
+        System.out.printf("  1 2 3\n");
+        System.out.printf("a %c %c %c\n", board[0][0], board[0][1], board[0][2]);
+        System.out.printf("b %c %c %c\n", board[1][0], board[1][1], board[1][2]);
+        System.out.printf("c %c %c %c\n", board[2][0], board[2][1], board[2][2]);
     }
 
 }
