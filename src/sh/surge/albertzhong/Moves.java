@@ -10,7 +10,7 @@ public class Moves {
         Scanner input = new Scanner(System.in);
         String move = input.nextLine();
 
-        while (checkMove(move)) {
+        while (!isMoveValid(move)) {
             System.out.println("Make a valid move: ");
             move = input.nextLine();
         }
@@ -37,7 +37,7 @@ public class Moves {
      * @param move
      * @return true if the move string is valid, otherwise false
      */
-    public static boolean checkMove (String move) {
+    private static boolean isMoveValid (String move) {
         if (move.length() != 2) {
             return false;
         }
