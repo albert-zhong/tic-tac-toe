@@ -60,7 +60,6 @@ public class Moves {
                 if ( board[numMove[0]][numMove[1]] != '=' ) {
                     return false;
                 }
-
             }
 
         return true;

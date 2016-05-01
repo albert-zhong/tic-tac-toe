@@ -6,7 +6,6 @@ package sh.surge.albertzhong;
 public class GameBoard {
     public static void main (String args[]) {
 
-        CheckVictory checkVictory = new CheckVictory();
         int[] result;
         int playerTurn;
         String sideTurn;
