@@ -7,9 +7,7 @@ public class GameBoard {
     public static void main (String args[]) {
 
         CheckVictory checkVictory = new CheckVictory();
-        Moves moves = new Moves();
         int[] result;
-        int turnPos;
         int playerTurn;
         String sideTurn;
 
@@ -24,9 +22,16 @@ public class GameBoard {
         System.out.println(">> P1: Crosses ");
 
         for(int i=0; i<100; i++) {
-            result = moves.turns();
-            turnPos = i;
-            if (turnPos%2 == 0) {
+
+            if ( i >= 9 ) {
+                System.out.println("<< Game ends in tie! >>");
+                break;
+            }
+
+            result = Moves.turns(board);
+
+
+            if (i%2 == 0) {
                 playerTurn = 2;
                 sideTurn = "Circles";
             } else {
@@ -42,16 +47,15 @@ public class GameBoard {
             System.out.println(">> P" + playerTurn + ": " + sideTurn + "\n>> Move: " + (i+2) + "\n");
             printBoard(board);
 
-            if (checkVictory.checkVictory(board) == "cross") {
-                System.out.println(">> Crosses (P1) wins!");
-                break;
-            } else if (checkVictory.checkVictory(board) == "circle") {
-                System.out.println(">> Circles (P2) wins!");
-                break;
-            } else if (checkVictory.checkVictory(board) == "tie") {
-                System.out.println(">> Game ends in tie!");
+            if ( CheckVictory.checkVictory(board).equals("cross") ) {
+                System.out.println("<< Crosses (P1) wins! >>");
                 break;
             }
+            if ( CheckVictory.checkVictory(board).equals("circle") ) {
+                System.out.println("<< Circles (P2) wins! >>");
+                break;
+            }
+
         }
     }
 
