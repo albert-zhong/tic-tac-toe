@@ -1,5 +1,7 @@
 package sh.surge.albertzhong;
 
+import static sh.surge.albertzhong.AI.prompt;
+
 /**
  * Created by Albert on 4/24/2016.
  */
@@ -17,6 +19,7 @@ public class GameBoard {
                 board[col][row] = '=';
             }
 
+        boolean gameType = prompt();
         printBoard(board);
         System.out.println(">> P1: Crosses ");
 
@@ -27,15 +30,23 @@ public class GameBoard {
                 break;
             }
 
-            result = Moves.turns(board);
-
-
             if (i%2 == 0) {
                 playerTurn = 2;
                 sideTurn = "Circles";
             } else {
                 playerTurn = 1;
                 sideTurn = "Crosses";
+            }
+
+            // If it's an AI game, it will direct who should make the move (AI or human)
+            if (!gameType) {
+                result = Moves.turns(board);
+            } else {
+                if (playerTurn == 1) { // If the Crosses (human) player is going
+                    result = Moves.turns(board);
+                } else {
+                    result = AI.createDecision(board);
+                }
             }
 
             if (i % 2 == 0) {

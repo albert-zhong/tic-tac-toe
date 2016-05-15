@@ -17,7 +17,6 @@ public class Moves {
         }
 
         return posConvert(move);
-
     }
 
     // Converts a move input (e.g a1) into a number array (0,0)
@@ -29,7 +28,6 @@ public class Moves {
         numMove[1] = charMove[1] - '1';
 
         return numMove;
-
     }
 
     /**
